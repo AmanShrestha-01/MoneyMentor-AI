@@ -1,0 +1,28 @@
+# Local development database only. Not a production configuration.
+# Usage (from repo root):  docker compose -f infra/docker-compose.yml up -d
+#
+# Host port 5433 avoids clashing with a natively installed PostgreSQL on 5432.
+# The password below is a throwaway local-dev credential, not a secret.
+
+name: moneymentor
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: moneymentor
+      POSTGRES_PASSWORD: moneymentor_dev
+      POSTGRES_DB: moneymentor
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      # Postgres 18+ images moved the volume to /var/lib/postgresql (not .../data).
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U moneymentor -d moneymentor"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  postgres_data:

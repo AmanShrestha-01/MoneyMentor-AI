@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/*
+ * MoneyMentor design tokens.
+ * Names follow the shadcn/ui convention (background, foreground, primary, muted, ...)
+ * so shadcn components can be added later without re-theming.
+ * Contrast targets WCAG AA: foreground/background ≥ 4.5:1 for body text.
+ */
+:root {
+  --background: #faf7f2; /* warm off-white */
+  --card: #ffffff;
+  --foreground: #14213d; /* deep navy */
+  --muted: #f1ece4;
+  --muted-foreground: #4a5568;
+  --primary: #0f766e; /* teal — primary actions */
+  --primary-foreground: #ffffff;
+  --primary-soft: #e3f2ef;
+  --accent: #e8effa; /* subtle blue */
+  --accent-foreground: #1e3a8a;
+  --notice: #fdf3e1;
+  --notice-foreground: #7a4a00;
+  --border: #e6e0d6;
+  --ring: #0f766e;
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-notice: var(--notice);
+  --color-notice-foreground: var(--notice-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-card: var(--radius);
+  --font-sans: var(--font-jakarta);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
